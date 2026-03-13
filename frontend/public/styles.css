@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(252, 250, 243);
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+}
+
+.navbar {
+    border-bottom: 3px solid #ffd735;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+    font-family: 'Noticia Text', serif;
+    font-size: 22px;
+}
+
+.navbar-brand span {
+    color: rgb(255, 140, 1);
+    font-style: italic;
+}
+
+h1,
+h2, h3 {
+    font-weight: bold;
+}
+
+#main-content {
+  text-align: center;
+}
+
+#main-content p {
+
+  text-align: center;
+}
+
+#title span {
+    color: rgb(255, 140, 1);
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#blob-1 {
+    width: 300px;
+    height: 300px;
+    background: #ffd23f;
+    top: -80px;
+    left: 50px;
+}
+
+#blob-2 {
+    width: 250px;
+    height: 250px;
+    background: #4cc9f0;
+    top: 40px;
+    right: 100px;
+}
+
+#blob-3 {
+    width: 200px;
+    height: 200px;
+    background: #ff6b35;
+    left: 200px;
+    bottom: -60px;
+}
+
+/* Lyrics */
+#lyrics-of-the-day {
+    border-bottom: 3px solid #ffd735;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#daily-lyric {
+    border: 3px solid black;
+    background-color: #ffffff;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    padding: 30px 40px;
+    width: 50%;
+    text-align: center;
+    box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.8);
+}
+
+/* Songs */
+
+#popular-songs-list {
+    list-style: none;
+    font-size: 20px;
+    border-bottom: 3px solid #ffd735;
+    margin-bottom: 0;
+}
+
+#popular-songs-list li {
+    list-style: none;
+    font-size: 20px;
+    margin: 1rem;
+    border-bottom: 2px solid rgb(201, 197, 197);
+    width: 95%;
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
+
+/* Footer */
+
+#footer {
+    background-color: rgb(46, 46, 46);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+
+h2.footer-heading {
+    font-size: 1.25rem !important;
+    margin: 0 0 0.5rem 0;
+    margin-top: 1rem;
+}
+
+p {
+    color: #967f71;
+}
+
+.footer {
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+    justify-items: center;
+}
+/* 768px desktop */
+@media screen and (max-width: 768px) {
+    .footer-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 2rem;
+        justify-items: start;
+        text-align: left;
+        margin-left: 0.7rem;
+    }
+
+    .footer-info:nth-child(1) {
+        grid-area: 1 / 1;
+    }
+    .footer-info:nth-child(2) {
+        grid-area: 1 / 2;
+    }
+    .footer-info:nth-child(3) {
+        grid-area: 2 / 1;
+    }
+
+    #copy-rights {
+        grid-column: 2 / 2;
+        grid-column: 1 / span 2;
+        text-align: center;
+    }
+
+    .footer-list li {
+        margin-top: 1.2rem;
+    }
+}
+/* End of 768px styling */
+
+/* footer */
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-socials p,
+.footer-info p {
+    margin-bottom: 0.5rem;
+    padding: 0;
+}
+
+a[target='_blank']::after {
+    content: '↗';
+}
+
+/* 380px mobile footer styling */
+@media screen and (min-width: 380px) {
+    .footer-socials p,
+    .footer-info p,
+    .footer-socials,
+    .footer-info {
+        margin-left: 0.2rem;
+    }
+    #contact-us,
+    #follow-us {
+        margin-left: 0.2rem;
+    }
+    .follow-text {
+        margin-left: 0.2rem;
+    }
+}
+
+#copy-rights {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 2rem;
+}
