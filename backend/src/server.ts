@@ -1,21 +1,28 @@
-import express from 'express'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import commentRoute from './routes/comment.route.js'
-import { connectDB } from './db.js'
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import commentRoute from './routes/comment.route.js';
+import { connectDB } from './db.js';
+import songRoutes from './routes/songroute.js';
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
-app.use(express.json())
-app.use(cors())
-// app.use(express.static('public'))
+const app = express();
 
-app.use('/comments', commentRoute)
+app.use(express.json());
+app.use(cors());
 
-const PORT = process.env.PORT || 3000
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`)
+app.use('/comments', commentRoute); // Går till MongoDB
+app.use('/api/songs', songRoutes);  // Går till MySQL
+
+const PORT = process.env.PORT || 3000;
+
+connectDB()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT} with BOTH databases!`);
+        });
     })
-})
+    .catch((error) => {
+        console.error("Kunde inte starta servern eftersom MongoDB misslyckades:", error);
+    });
