@@ -44,7 +44,9 @@ CREATE TABLE songs_artists (
 CREATE TABLE lyrics (
     lyric_id INT AUTO_INCREMENT PRIMARY KEY,
     text_content TEXT NOT NULL,
-    song_id INT NOT NULL UNIQUE,
+    song_id INT NOT NULL,
+    part_type ENUM('verse', 'chorus', 'bridge', 'pre-chorus', 'post-chorus', 'intro', 'outro') NOT NULL DEFAULT 'verse',
+    position INT NOT NULL,
     FOREIGN KEY (song_id) REFERENCES songs(song_id) ON DELETE CASCADE
 );
 
