@@ -1,13 +1,13 @@
 const ulList = document.getElementById('popular-songs-list')
 
 const searchInput = document.getElementById('search-input')
-const searchResults = document.getElementById('seatchResults')
+const searchResults = document.getElementById('seartchResults')
 const searchButton = document.getElementById('search-button')
 
 const dailyVerse = document.getElementById('daily-lyric')
 
 const renderDailyVerse = (verse) => {
-    dailyVerse.innerHTML = `<p>"${verse.text_content}" - ${verse.artist_name}, ${verse.song_title}</p>`
+    dailyVerse.innerHTML = `<p>"${verse.text_content}" - ${verse.name}, ${verse.title}</p>`
 }
 
 const fetchDailyVerse = async () => {

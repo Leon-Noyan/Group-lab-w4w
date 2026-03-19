@@ -190,6 +190,10 @@ h3 {
     padding-bottom: 0.5rem;
 }
 
+#popular-songs-list li:hover {
+  color: rgb(255, 140, 1);
+}
+
 /* Footer */
 
 #footer {

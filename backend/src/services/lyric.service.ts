@@ -1,5 +1,12 @@
 import pool from '../mysql_db.js'
 import type { Lyric } from '../controllers/lyric.controller.js'
+import type { RowDataPacket } from 'mysql2'
+
+interface DailyLyric extends RowDataPacket {
+    text_content: string;
+    title: string;
+    name: string
+}
 
 export const getLyricById = async (id: number) => {
     const [rows] = await pool.query(
@@ -7,6 +14,21 @@ export const getLyricById = async (id: number) => {
         [id]
     )
     return rows
+}
+
+export const getRandomLyric = async (): Promise<DailyLyric | undefined> => {
+  const date = new Date()
+
+  const dailyDate = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate()
+
+    const [rows] = await pool.query<DailyLyric[]>(
+        `SELECT lyrics.text_content, songs.title AS title, artists.name AS name
+        FROM lyrics
+        JOIN songs ON lyrics.song_id = songs.song_id JOIN songs_artists sa ON songs.song_id = sa.song_id
+        JOIN artists ON sa.artist_id = artists.artist_id
+        ORDER BY RAND(${dailyDate}) LIMIT 1`
+    )
+    return rows[0]
 }
 
 export const createLyric = async (lyricData: Omit<Lyric, 'lyric_id'>) => {

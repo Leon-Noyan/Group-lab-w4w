@@ -32,6 +32,20 @@ export const getLyricsBySong = async (req: Request, res: Response) => {
     }
 }
 
+export const getRandomLyric = async (req: Request, res: Response) => {
+
+  try {
+    const lyric = await lyricservice.getRandomLyric()
+    if (!lyric) {
+      return res.status(404).json({ message: 'Could not find lyrics' })
+    }
+    return res.status(200).json(lyric)
+  } catch (error) {
+    console.log('error:', error)
+    res.status(500).json({ message: 'Internal server error' })
+  }
+}
+
 export const postLyric = async (req: Request, res: Response) => {
     try {
         const newLyric: Omit<Lyric, 'lyric_id'> = req.body
