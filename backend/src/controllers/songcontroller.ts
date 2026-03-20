@@ -10,6 +10,21 @@ export const getSongs = async (req: Request, res: Response) => {
     }
 };
 
+export const getSearchedSongs = async (req: Request, res: Response) => {
+  try {
+    const search = req.query.search as string
+
+    if (!search || search.length === 0) {
+      return res.status(400).json({ message: 'Missing search query' })
+    }
+
+    const songs = await songservice.getSearchedSongs(search)
+    res.status(200).json(songs)
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error })
+  }
+}
+
 export const createSong = async (req: Request, res: Response) => {
     try {
         const { title, album_id } = req.body;

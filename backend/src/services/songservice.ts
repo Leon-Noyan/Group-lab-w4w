@@ -12,6 +12,21 @@ export const getAllSongs = async () => {
     return rows;
 };
 
+export const getSearchedSongs = async (search: string) => {
+  const searchVal = `%${search}%`
+    const [rows] = await pool.query(`
+      SELECT s.song_id, s.title, GROUP_CONCAT(DISTINCT a.name ORDER BY a.name SEPARATOR ', ') AS artist
+      FROM songs s
+      LEFT JOIN songs_artists sa ON s.song_id = sa.song_id
+      LEFT JOIN artists a ON sa.artist_id = a.artist_id
+      LEFT JOIN albums alb ON s.album_id = alb.album_id
+      WHERE s.title LIKE ? OR a.name LIKE ?
+      GROUP BY s.song_id, s.title
+      LIMIT 5
+      `, [searchVal, searchVal])
+    return rows;
+};
+
 export const createSong = async (title: string, album_id: number) => {
     const [result] = await pool.query('INSERT INTO songs (title, album_id) VALUES (?, ?)', [title, album_id]);
     return result;

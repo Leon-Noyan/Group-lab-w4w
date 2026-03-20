@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { getSongs, createSong, updateSong, deleteSong } from '../controllers/songcontroller.js';
+import { getSongs, getSearchedSongs ,createSong, updateSong, deleteSong } from '../controllers/songcontroller.js';
 
 
 const router = Router();
 
 router.get('/', getSongs);
+router.get('/search', getSearchedSongs);
 router.post('/', createSong);
 router.put('/:id', updateSong);
 router.delete('/:id', deleteSong);

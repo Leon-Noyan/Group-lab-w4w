@@ -1,9 +1,12 @@
+// Popular songs list
 const ulList = document.getElementById('popular-songs-list')
 
+// Searchbar
 const searchInput = document.getElementById('search-input')
-const searchResults = document.getElementById('seartchResults')
+const searchResults = document.getElementById('search-results')
 const searchButton = document.getElementById('search-button')
 
+// Daily verse
 const dailyVerse = document.getElementById('daily-lyric')
 
 const renderDailyVerse = (verse) => {
@@ -49,3 +52,52 @@ const renderSongsStartPage = async (songs) => {
 }
 
 fetchSongs()
+
+// Searchbar
+
+let searchTimeout
+const searchTimeHandler = (userInput) => {
+    clearTimeout(searchTimeout)
+
+    searchTimeout = setTimeout(() => {
+        if (userInput.length >= 2) {
+            fetchSearchedSongs(userInput)
+        } else {
+            searchResults.innerHTML = ''
+        }
+    }, 500)
+}
+
+searchInput.addEventListener('input', (event) => {
+    const userInput = event.target.value.trim()
+    searchTimeHandler(userInput)
+})
+
+async function fetchSearchedSongs(search) {
+    try {
+        const response = await fetch(
+            `http://localhost:3000/api/songs/search?search=${search}`
+        )
+
+        const songs = await response.json()
+
+
+        searchResults.innerHTML = ''
+
+        if (songs.length === 0) {
+            searchResults.innerHTML = '<p>Could not find results</p>'
+        }
+
+        songs.forEach((song) => {
+          console.log('Song object:', song)
+            const songDiv = document.createElement('div')
+            songDiv.classList.add('song-card')
+            // kolla att länken är rätt, den behöver plocka rätt id för rätt låt så att den får rätt sida
+            songDiv.innerHTML = `<a href="/songs/song.html?song_id=${song.song_id}">${song.title} - ${song.artist}</a>`
+
+            searchResults.appendChild(songDiv)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
