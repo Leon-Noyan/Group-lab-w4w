@@ -64,6 +64,7 @@ const searchTimeHandler = (userInput) => {
             fetchSearchedSongs(userInput)
         } else {
             searchResults.innerHTML = ''
+            searchResults.style.display = 'none'
         }
     }, 500)
 }
@@ -81,11 +82,16 @@ async function fetchSearchedSongs(search) {
 
         const songs = await response.json()
 
-
         searchResults.innerHTML = ''
 
         if (songs.length === 0) {
-            searchResults.innerHTML = '<p>Could not find results</p>'
+          searchResults.style.display = 'block'
+          searchResults.innerHTML = '<p>Could not find results</p>'
+          return
+        } else if (searchInput.value === '') {
+          searchResults.style.display = 'none'
+        } else {
+          searchResults.style.display = 'block'
         }
 
         songs.forEach((song) => {
@@ -99,5 +105,6 @@ async function fetchSearchedSongs(search) {
         })
     } catch (error) {
         console.log(error)
+        searchResults.style.display = 'none'
     }
 }
