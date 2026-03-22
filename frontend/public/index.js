@@ -46,7 +46,7 @@ const renderSongsStartPage = async (songs) => {
 
         const mostPopular = (number + 1).toString().padStart(2, '0')
 
-        li.textContent = `${mostPopular} ${song.title} - ${song.artist}`
+        li.innerHTML = `<a href="lyrics.html?song_id=${song.song_id}">${mostPopular} ${song.title} - ${song.artist}</a>`
         ulList.appendChild(li)
     })
 }
@@ -99,7 +99,7 @@ async function fetchSearchedSongs(search) {
             const songDiv = document.createElement('div')
             songDiv.classList.add('song-card')
             // kolla att länken är rätt, den behöver plocka rätt id för rätt låt så att den får rätt sida
-            songDiv.innerHTML = `<a href="/songs/song.html?song_id=${song.song_id}">${song.title} - ${song.artist}</a>`
+            songDiv.innerHTML = `<a href="lyrics.html?song_id=${song.song_id}">${song.title} - ${song.artist}</a>`
 
             searchResults.appendChild(songDiv)
         })

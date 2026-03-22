@@ -1,5 +1,6 @@
 import pool from '../mysql_db.js';
 
+// kolla på denna verkar inte som att den uppdaterar vilka låtar som är mest populära
 export const getAllSongs = async () => {
     const [rows] = await pool.query(`SELECT s.song_id, s.title, GROUP_CONCAT(DISTINCT a.name SEPARATOR ', ') AS artist,
       COUNT(DISTINCT sv.song_view_id) AS views

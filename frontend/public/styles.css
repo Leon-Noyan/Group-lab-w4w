@@ -211,6 +211,11 @@ h3 {
     color: #958c89;
 }
 
+#popular-songs-list a {
+    color: #958c89;
+    text-decoration: none;
+}
+
 #popular-songs-list li {
     list-style: none;
     font-size: 20px;
@@ -218,6 +223,7 @@ h3 {
     border-bottom: 2px solid rgb(201, 197, 197);
     cursor: pointer;
     padding-bottom: 0.5rem;
+
 }
 
 #popular-songs-list li:hover {

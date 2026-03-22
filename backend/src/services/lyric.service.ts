@@ -10,7 +10,7 @@ interface DailyLyric extends RowDataPacket {
 
 export const getLyricById = async (id: number) => {
     const [rows] = await pool.query(
-        'SELECT * FROM lyrics WHERE song_id = ? ORDER BY position ASC',
+        `SELECT lyrics.*,songs.title FROM lyrics JOIN songs ON lyrics.song_id = songs.song_id WHERE lyrics.song_id = ?`,
         [id]
     )
     return rows
