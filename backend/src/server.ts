@@ -13,7 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use('/comments', commentRoute) // Går till MongoDB
+app.use('/api/comments', commentRoute) // Går till MongoDB
 app.use('/api/songs', songRoutes) // Går till MySQL
 app.use('/api/lyrics', lyricRoute) // Går till MySQL
 

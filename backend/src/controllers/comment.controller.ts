@@ -5,6 +5,7 @@ import { getCommentById } from '../services/comment.service.js'
 import { updateComment } from '../services/comment.service.js'
 import { deleteComment } from '../services/comment.service.js'
 import { commentSchema } from '../schemas/commentSchema.js'
+import { getCommentsBySongId } from '../services/comment.service.js'
 
 // POST
 export const createCommentController = async (req: Request, res: Response) => {
@@ -43,6 +44,22 @@ export const getCommentByIdController = async (
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
+}
+
+// GET Comment by songId
+
+export const getCommentsBySongIdController = async (req: Request, res: Response) => {
+  try {
+    const song_id = req.params.song_id as string
+    if (!song_id) {
+      return res.status(400).json({ message: 'Missing song id' })
+    }
+
+    const comments = await getCommentsBySongId(song_id)
+    res.json(comments)
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' })
+  }
 }
 
 // PUT/ UPDATE Comment

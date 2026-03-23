@@ -18,12 +18,20 @@ export const getCommentById = async (id: string) => {
     return comment
 }
 
+// GET Comment by songId
+export const getCommentsBySongId = async (id: string) => {
+  const comments = await Comment.find({ song_id: parseInt(id) })
+  return comments
+}
+
+
+
 // PUT
 export const updateComment = async (
     id: string,
     data: Partial<CreateComment>
 ) => {
-    return await Comment.findByIdAndUpdate(id, data, { new: true })
+    return await Comment.findByIdAndUpdate(id, data, { returnDocument: 'after' })
 }
 
 export const deleteComment = async (id: string) => {

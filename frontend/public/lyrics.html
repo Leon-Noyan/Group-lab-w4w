@@ -21,15 +21,17 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="styles.css"/>
-        <link rel="stylesheet" href="lyrics.css"/>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="lyrics.css" />
         <title>W4W</title>
     </head>
     <body>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Word 4 <span>Word</span></a>
+                <a class="navbar-brand" href="index.html"
+                    >Word 4 <span>Word</span></a
+                >
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -66,16 +68,20 @@
                             >
                         </li>
                     </ul>
-                    <form class="d-flex ms-3" role="search" id="search-input">
+                    <form
+                        action="#"
+                        class="d-flex ms-3"
+                        role="search"
+                        id="search-input"
+                    >
                         <input
                             class="form-control me-2"
                             type="search"
                             placeholder="Search..."
                             aria-label="Search"
                         />
-                      <div id="search-results"></div>
+                        <div id="search-results"></div>
                     </form>
-
                 </div>
             </div>
         </nav>
@@ -86,104 +92,114 @@
             <div class="blob" id="blob-3"></div>
         </section>
 
-
         <main>
+            <section id="songInfo">
+                <div id="lyric-container"></div>
+            </section>
 
-          <section id="songInfo">
-            <div id="lyric-container">
-            </div>
-          </section>
-
+            <section id="comments">
+                <h3>Comments section</h3>
+                <div id="comments-container">
+                    <ul id="comments-list-ul"></ul>
+                    <form action="#" id="comment-form">
+                        <input
+                            type="text"
+                            name="comment-message"
+                            id="comment-input"
+                            placeholder="Share your thoughts here..."
+                        />
+                        <button type="submit" id="comments-btn">Post</button>
+                    </form>
+                </div>
+                <div id="empty-comments">
+                    <p>Be the first to share your thoughts!</p>
+                </div>
+            </section>
         </main>
 
-
-            <footer id="footer" aria-label="Site footer">
-                <div class="footer-content">
-                    <div class="footer-info">
-                        <h2 class="footer-heading" id="contact-us">
-                            Contact Us
-                        </h2>
-                        <p>Random address</p>
-                        <p>Stockholm</p>
-                        <p>Info@word4word.com</p>
-                        <p>0701455040</p>
-                    </div>
-                    <div class="footer-info">
-                        <h2 class="footer-heading">Links</h2>
-                        <ul class="footer-list">
-                            <li>
-                                <a class="links-style" href="/index.html"
-                                    >Home <i class="fa-solid fa-house"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="links-style" href="/pages/about.html"
-                                    >About
-                                    <i class="fa-solid fa-circle-info"></i
-                                ></a>
-                            </li>
-                            <li>
-                                <a class="links-style" href="/pages/index.html"
-                                    >Work with us
-                                    <i class="fa-solid fa-briefcase"></i
-                                ></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-socials footer-info">
-                        <h2 class="footer-heading" id="follow-us">Follow Us</h2>
-                        <p>
-                            <a
-                                class="links-style"
-                                target="_blank"
-                                title="Follow us on facebook"
-                                href="https://facebook.com"
-                                >Facebook <i class="fa-brands fa-facebook"></i
+        <footer id="footer" aria-label="Site footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h2 class="footer-heading" id="contact-us">Contact Us</h2>
+                    <p>Random address</p>
+                    <p>Stockholm</p>
+                    <p>Info@word4word.com</p>
+                    <p>0701455040</p>
+                </div>
+                <div class="footer-info">
+                    <h2 class="footer-heading">Links</h2>
+                    <ul class="footer-list">
+                        <li>
+                            <a class="links-style" href="/index.html"
+                                >Home <i class="fa-solid fa-house"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="links-style" href="/pages/about.html"
+                                >About <i class="fa-solid fa-circle-info"></i
                             ></a>
-                        </p>
-                        <p>
-                            <a
-                                class="links-style"
-                                target="_blank"
-                                title="Follow us on X"
-                                href="https://twitter.com"
-                                >Twitter <i class="fa-brands fa-x-twitter"></i
+                        </li>
+                        <li>
+                            <a class="links-style" href="/pages/index.html"
+                                >Work with us
+                                <i class="fa-solid fa-briefcase"></i
                             ></a>
-                        </p>
-                        <p>
-                            <a
-                                class="links-style"
-                                target="_blank"
-                                title="Follow us on Instagram"
-                                href="https://instagram.com"
-                                >Instagram <i class="fa-brands fa-instagram"></i
-                            ></a>
-                        </p>
-                        <p>
-                            <a
-                                class="links-style"
-                                target="_blank"
-                                title="Follow us on LinkedIn"
-                                href="https://linkedin.com"
-                                >LinkedIn <i class="fa-brands fa-linkedin"></i
-                            ></a>
-                        </p>
-                    </div>
-                    <p id="copy-rights">
-                        &copy;2026 Word 4 Word. All rights reserved.
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-socials footer-info">
+                    <h2 class="footer-heading" id="follow-us">Follow Us</h2>
+                    <p>
+                        <a
+                            class="links-style"
+                            target="_blank"
+                            title="Follow us on facebook"
+                            href="https://facebook.com"
+                            >Facebook <i class="fa-brands fa-facebook"></i
+                        ></a>
+                    </p>
+                    <p>
+                        <a
+                            class="links-style"
+                            target="_blank"
+                            title="Follow us on X"
+                            href="https://twitter.com"
+                            >Twitter <i class="fa-brands fa-x-twitter"></i
+                        ></a>
+                    </p>
+                    <p>
+                        <a
+                            class="links-style"
+                            target="_blank"
+                            title="Follow us on Instagram"
+                            href="https://instagram.com"
+                            >Instagram <i class="fa-brands fa-instagram"></i
+                        ></a>
+                    </p>
+                    <p>
+                        <a
+                            class="links-style"
+                            target="_blank"
+                            title="Follow us on LinkedIn"
+                            href="https://linkedin.com"
+                            >LinkedIn <i class="fa-brands fa-linkedin"></i
+                        ></a>
                     </p>
                 </div>
-            </footer>
+                <p id="copy-rights">
+                    &copy;2026 Word 4 Word. All rights reserved.
+                </p>
+            </div>
+        </footer>
 
-            <script src="index.js"></script>
-            <script src="lyrics.js"></script>
-            <!-- Bootstrap JS -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- Font Awesome -->
-            <script
-                src="https://kit.fontawesome.com/2923bd0930.js"
-                crossorigin="anonymous"
-            ></script>
-
+        <script src="sharedFunctions.js"></script>
+        <script src="lyrics.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Font Awesome -->
+        <script
+            src="https://kit.fontawesome.com/2923bd0930.js"
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>
