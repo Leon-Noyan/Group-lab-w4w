@@ -96,14 +96,17 @@ form.addEventListener('submit', async (event) => {
 
 const displayComment = (comment) => {
     const commentLi = document.createElement('li')
+    commentLi.className = 'comment-li'
 
     const updateBtn = document.createElement('button')
+    updateBtn.className = 'update-btn'
     updateBtn.textContent = 'Update'
     updateBtn.addEventListener('click', () =>
         updateComment(comment._id, comment)
     )
 
     const deleteBtn = document.createElement('button')
+    deleteBtn.className = 'delete-btn'
     deleteBtn.textContent = 'Delete'
     deleteBtn.addEventListener('click', async () => deleteComment(comment._id))
 

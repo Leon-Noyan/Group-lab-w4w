@@ -56,7 +56,76 @@ main {
     margin-bottom: 0 !important;
 }
 
+#comment-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
 #comments {
   margin-top: 2rem;
   margin-left: 7rem;
+  margin-bottom: 2rem;
+}
+
+.comment-li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style-type: none;
+}
+
+.comment-li p {
+  margin: 0;
+  margin-bottom: 1rem;
+  flex: 0.2;
+  min-width: 50%;
+  word-break: break-word;
+  font-weight: bold;
+}
+
+.update-btn {
+  border: none;
+  color: green;
+  font-weight: bold;
+  border-radius: 2px;
+  background-color: rgb(252, 250, 243);
+  margin-right: 0.5rem;
+}
+
+.delete-btn {
+  border: none;
+  background-color: rgb(252, 250, 243);
+  color: red;
+  font-weight: bold;
+}
+
+.update-btn, .delete-btn {
+  align-self: center;
+}
+
+#comment-input {
+  border-radius: 5px;
+  min-width: 60%;
+  padding: 0.5rem;
+  resize: none;
+  overflow: hidden;
+}
+
+#comments-btn {
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(48, 122, 206);
+  color: white;
+  font-weight: bold;
+  padding: 0.3rem;
+  width: 4rem;
+  align-self: stretch;
+}
+
+@media (max-width: 768px) {
+  #comments, #lyric-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
