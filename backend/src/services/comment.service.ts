@@ -24,8 +24,6 @@ export const getCommentsBySongId = async (id: string) => {
   return comments
 }
 
-
-
 // PUT
 export const updateComment = async (
     id: string,

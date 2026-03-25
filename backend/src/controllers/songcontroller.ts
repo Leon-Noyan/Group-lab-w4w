@@ -35,6 +35,17 @@ export const createSong = async (req: Request, res: Response) => {
     }
 };
 
+export const createSongView = async (req: Request, res: Response) => {
+  try {
+    const song_id = Number(req.params.id)
+    const {user_id} = req.body
+    const result = await songservice.createSongView(song_id, user_id)
+    res.status(201).json({ message: 'Låt visning har registrerats!', result })
+  } catch (error) {
+    res.status(500).json({ message: 'Det gick inte att registrera låt visningen', error })
+  }
+}
+
 export const updateSong = async (req: Request, res: Response) => {
     try {
         const id = Number(req.params.id);

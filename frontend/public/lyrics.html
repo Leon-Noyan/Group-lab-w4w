@@ -69,16 +69,17 @@
                         </li>
                     </ul>
                     <form
-                        action="#"
                         class="d-flex ms-3"
                         role="search"
-                        id="search-input"
+                        id="search-form"
+                        action="#"
                     >
                         <input
                             class="form-control me-2"
                             type="search"
                             placeholder="Search..."
                             aria-label="Search"
+                            id="search-input"
                         />
                         <div id="search-results"></div>
                     </form>
@@ -101,7 +102,7 @@
                 <h3>Comments section</h3>
                 <div id="comments-container">
                     <ul id="comments-list-ul"></ul>
-                    <form action="#" id="comment-form">
+                    <form id="comment-form" action="#">
                         <textarea
                             type="text"
                             name="comment-message"

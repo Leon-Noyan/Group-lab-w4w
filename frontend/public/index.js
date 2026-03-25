@@ -4,10 +4,12 @@ const ulList = document.getElementById('popular-songs-list')
 // Daily verse
 const dailyVerse = document.getElementById('daily-lyric')
 
+// function that renders the daily verse
 const renderDailyVerse = (verse) => {
     dailyVerse.innerHTML = `<p>"${verse.text_content}" - ${verse.name}, ${verse.title}</p>`
 }
 
+// function that fetches the daily verse
 const fetchDailyVerse = async () => {
     try {
         const response = await fetch('http://localhost:3000/api/lyrics/random')
@@ -20,6 +22,7 @@ const fetchDailyVerse = async () => {
 
 fetchDailyVerse()
 
+// function that fetches the songs
 const fetchSongs = async () => {
     try {
         const response = await fetch('http://localhost:3000/api/songs')
@@ -33,6 +36,7 @@ const fetchSongs = async () => {
     }
 }
 
+// function that renders the songs
 const renderSongsStartPage = async (songs) => {
     ulList.innerHTML = ''
 

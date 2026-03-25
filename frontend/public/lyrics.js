@@ -25,6 +25,7 @@ const fetchLyricById = async (id) => {
     }
 }
 
+// function that renders the lyrics
 const renderLyric = (rows) => {
     lyricContainer.innerHTML = ''
 
@@ -64,11 +65,12 @@ const renderLyric = (rows) => {
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault()
-
-    if (!commentInput.value) {
+    // checks if the user has entered text in the comment section if not, thet are met with a pop up alert
+    if (!commentInput.value.trim()) {
         alert('Enter a comment')
         return
     }
+    // template for the comment object
     const comment = {
         song_id: parseInt(urlId),
         user_id: 1,
@@ -94,34 +96,41 @@ form.addEventListener('submit', async (event) => {
     }
 })
 
+// function that displays the comment
 const displayComment = (comment) => {
+    // creates a li element
     const commentLi = document.createElement('li')
     commentLi.className = 'comment-li'
-
+    // creates a button element
     const updateBtn = document.createElement('button')
     updateBtn.className = 'update-btn'
     updateBtn.textContent = 'Update'
+
     updateBtn.addEventListener('click', () =>
         updateComment(comment._id, comment)
     )
-
+    // creates a button element
     const deleteBtn = document.createElement('button')
     deleteBtn.className = 'delete-btn'
     deleteBtn.textContent = 'Delete'
     deleteBtn.addEventListener('click', async () => deleteComment(comment._id))
+    // creates a p element
+    const textComment = document.createElement('p')
+    textComment.textContent = `${comment.username} - ${comment.content}`
 
-    commentLi.innerHTML = `<p>${comment.username} - ${comment.content}</p>
-
-    `
-    commentsListUl.appendChild(commentLi)
+    // appends the elements to the comment li
+    commentLi.appendChild(textComment)
     commentLi.appendChild(updateBtn)
     commentLi.appendChild(deleteBtn)
+    commentsListUl.appendChild(commentLi)
 }
 
 // fetch comments
 const fetchComments = async (id) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/comments/song/${id}`)
+        const response = await fetch(
+            `http://localhost:3000/api/comments/song/${id}`
+        )
         const comments = await response.json()
 
         commentsListUl.innerHTML = ''
@@ -132,13 +141,13 @@ const fetchComments = async (id) => {
             emptyComments.style.display = 'none'
             comments.forEach((comment) => displayComment(comment))
         }
-
     } catch (error) {
         console.error(error)
     }
 }
 
 const updateComment = async (id, comment) => {
+    // gives the user a prompt window where they can update their comment
     const updatedMessage = prompt('Update your comment', comment.content)
 
     if (!updatedMessage) {
@@ -164,23 +173,45 @@ const updateComment = async (id, comment) => {
     }
 }
 
+// function that deletes the comment
 const deleteComment = async (id) => {
-  try {
-    const response = await fetch(`http://localhost:3000/api/comments/${id}`, {
-        method: 'DELETE'
-    })
-    if (response.ok) {
-      fetchComments(urlId)
+    try {
+        const response = await fetch(
+            `http://localhost:3000/api/comments/${id}`,
+            {
+                method: 'DELETE'
+            }
+        )
+        if (response.ok) {
+            fetchComments(urlId)
+        }
+    } catch (error) {
+        console.error(error)
     }
-  } catch (error) {
-    console.error(error)
-  }
 }
 
+// function that creates a song view
+const createSongView = async () => {
+    try {
+        await fetch(`http://localhost:3000/api/songs/${urlId}/views`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: 1 })
+            // body: JSON.stringify({ user_id: 1 }) ska ersättas med login user då detta är hårdkodat
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// checks if the song id is present in the url
 if (!urlId) {
     console.error('Missing song id')
     lyricContainer.innerHTML = 'Song not found'
 } else {
     fetchLyricById(urlId)
     fetchComments(urlId)
+    createSongView()
 }
