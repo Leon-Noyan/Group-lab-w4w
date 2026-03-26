@@ -52,6 +52,7 @@ const renderLyric = (rows) => {
 
         // song text
         const lyricText = document.createElement('p')
+        lyricText.className = 'lyricText'
         lyricText.textContent = row.text_content
 
         // append to container

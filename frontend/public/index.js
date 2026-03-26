@@ -42,12 +42,23 @@ const renderSongsStartPage = async (songs) => {
 
     songs.forEach((song, number) => {
         const li = document.createElement('li')
+        li.className = 'popular-song-li'
 
         const mostPopular = (number + 1).toString().padStart(2, '0')
 
-        li.innerHTML = `<a href="lyrics.html?song_id=${song.song_id}">${mostPopular} ${song.title} - ${song.artist}</a>`
+        li.innerHTML = `<a href="lyrics.html?song_id=${song.song_id}">${mostPopular} ${song.title} - ${song.artist}</a> <span><i class="fa-solid fa-eye"></i>${viewFormat(song.views)}</span>`
         ulList.appendChild(li)
     })
+}
+
+// function to make sure that we don't display a large number of views, instead we display higher value numbers with a K or M
+function viewFormat(numberOfViews) {
+  if (numberOfViews >= 1000000) {
+    return `${(numberOfViews / 1000000).toFixed(1)}M`
+  } else if (numberOfViews >= 1000) {
+    return `${(numberOfViews / 1000).toFixed(1)}K`
+  }
+  return numberOfViews
 }
 
 fetchSongs()
