@@ -5,6 +5,7 @@ import commentRoute from './routes/comment.route.js'
 import { connectDB } from './db.js'
 import songRoutes from './routes/songroute.js'
 import lyricRoute from './routes/lyric.route.js'
+import userRoute from './routes/user.route.js'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.use(cors())
 app.use('/api/comments', commentRoute) // Går till MongoDB
 app.use('/api/songs', songRoutes) // Går till MySQL
 app.use('/api/lyrics', lyricRoute) // Går till MySQL
+app.use('/api/auth', userRoute) // Går till MySQL
 
 const PORT = process.env.PORT || 3000
 
