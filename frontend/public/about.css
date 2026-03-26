@@ -1,0 +1,73 @@
+#about-container {
+    margin: 4rem auto;
+    width: 85%;
+    max-width: 1000px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.about-header {
+    font-family: 'Fredoka', serif;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-header span {
+    color: rgb(255, 140, 1);
+    font-style: italic;
+}
+
+.about-description {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+    padding: 0 1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.team-member {
+    border: 3px solid black;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 40px 20px;
+    box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.8);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member i {
+    font-size: 3.5rem;
+    color: #ffd735;
+    margin-bottom: 1.5rem;
+}
+
+.team-member h3 {
+    font-family: 'Fredoka', serif;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    color: #958c89;
+    font-weight: bold;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
