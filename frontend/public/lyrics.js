@@ -1,11 +1,26 @@
 const lyricContainer = document.getElementById('lyric-container')
 const urlId = new URLSearchParams(window.location.search).get('song_id')
+
 // Comments
 const commentInput = document.getElementById('comment-input')
 const commentsListUl = document.getElementById('comments-list-ul')
 const commentsBtn = document.getElementById('comments-btn')
 const form = document.getElementById('comment-form')
 const emptyComments = document.getElementById('empty-comments')
+
+// auth
+// grabs data
+const userToken = (token) => {
+    if (token) {
+        const payload = token.split('.')[1]
+        const decoded = atob(payload)
+        return JSON.parse(decoded)
+    } else {
+        return null
+    }
+}
+const token = localStorage.getItem('token')
+const user = userToken(token)
 
 const fetchLyricById = async (id) => {
     if (!id) {
@@ -66,6 +81,7 @@ const renderLyric = (rows) => {
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault()
+
     // checks if the user has entered text in the comment section if not, thet are met with a pop up alert
     if (!commentInput.value.trim()) {
         alert('Enter a comment')
@@ -74,8 +90,8 @@ form.addEventListener('submit', async (event) => {
     // template for the comment object
     const comment = {
         song_id: parseInt(urlId),
-        user_id: 1,
-        username: 'Yulia',
+        user_id: user?.user_id,
+        username: user?.username,
         content: commentInput.value
     }
 
@@ -102,27 +118,33 @@ const displayComment = (comment) => {
     // creates a li element
     const commentLi = document.createElement('li')
     commentLi.className = 'comment-li'
-    // creates a button element
-    const updateBtn = document.createElement('button')
-    updateBtn.className = 'update-btn'
-    updateBtn.textContent = 'Update'
 
-    updateBtn.addEventListener('click', () =>
-        updateComment(comment._id, comment)
-    )
-    // creates a button element
-    const deleteBtn = document.createElement('button')
-    deleteBtn.className = 'delete-btn'
-    deleteBtn.textContent = 'Delete'
-    deleteBtn.addEventListener('click', async () => deleteComment(comment._id))
-    // creates a p element
     const textComment = document.createElement('p')
     textComment.textContent = `${comment.username} - ${comment.content}`
-
-    // appends the elements to the comment li
     commentLi.appendChild(textComment)
-    commentLi.appendChild(updateBtn)
-    commentLi.appendChild(deleteBtn)
+    // creates a button element
+    if (user && user.user_id === comment.user_id) {
+        const updateBtn = document.createElement('button')
+        updateBtn.className = 'update-btn'
+        updateBtn.textContent = 'Update'
+
+        updateBtn.addEventListener('click', () =>
+            updateComment(comment._id, comment)
+        )
+        // creates a button element
+        const deleteBtn = document.createElement('button')
+        deleteBtn.className = 'delete-btn'
+        deleteBtn.textContent = 'Delete'
+        deleteBtn.addEventListener('click', async () =>
+            deleteComment(comment._id)
+        )
+
+        // appends the elements to the comment li
+
+        commentLi.appendChild(updateBtn)
+        commentLi.appendChild(deleteBtn)
+    }
+
     commentsListUl.appendChild(commentLi)
 }
 
@@ -199,12 +221,20 @@ const createSongView = async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user_id: 1 })
-            // body: JSON.stringify({ user_id: 1 }) ska ersättas med login user då detta är hårdkodat
+            body: JSON.stringify({ user_id: user?.user_id })
         })
     } catch (error) {
         console.error(error)
     }
+}
+
+if (!user) {
+    form.style.display = 'none'
+    const infoMessage = document.createElement('p')
+    infoMessage.textContent = 'You need to be logged in to post a comment'
+    document.getElementById('comments-container').appendChild(infoMessage)
+} else {
+    form.style.display = 'flex'
 }
 
 // checks if the song id is present in the url
