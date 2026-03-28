@@ -99,7 +99,8 @@ form.addEventListener('submit', async (event) => {
         const response = await fetch('http://localhost:3000/api/comments', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(comment)
         })
@@ -183,7 +184,8 @@ const updateComment = async (id, comment) => {
             {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ content: updatedMessage })
             }
@@ -202,7 +204,8 @@ const deleteComment = async (id) => {
         const response = await fetch(
             `http://localhost:3000/api/comments/${id}`,
             {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {'Authorization': `Bearer ${token}`}
             }
         )
         if (response.ok) {

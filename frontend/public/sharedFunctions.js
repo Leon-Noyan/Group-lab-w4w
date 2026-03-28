@@ -4,6 +4,9 @@ const searchInput = document.getElementById('search-input')
 const searchResults = document.getElementById('search-results')
 const searchButton = document.getElementById('search-button')
 
+// navbar
+const loginRegisterTag = document.getElementById('login-register-tag')
+
 // function that fetches the search results when the user types 2 or more letters
 let searchTimeout
 const searchTimeHandler = (userInput) => {
@@ -27,7 +30,7 @@ searchInput.addEventListener('input', (event) => {
 })
 
 searchForm.addEventListener('submit', (event) => {
-  event.preventDefault()
+    event.preventDefault()
 })
 
 // function that loops through the search results and displays them, also handles the case when there are no results
@@ -64,4 +67,25 @@ async function fetchSearchedSongs(search) {
         console.log(error)
         searchResults.style.display = 'none'
     }
+}
+
+// function that changes the login register tag to logout when token has been deleted
+const updateLoginTag = () => {
+    const token = localStorage.getItem('token')
+    const loginRegisterTag = document.getElementById('login-register-tag')
+
+    if (token) {
+        loginRegisterTag.textContent = 'Logout'
+        loginRegisterTag.href = '#'
+        loginRegisterTag.addEventListener('click', userLoggedOut)
+    } else {
+        loginRegisterTag.textContent = 'Login & Register'
+        loginRegisterTag.href = '/loginRegister.html'
+    }
+}
+updateLoginTag()
+// removes the users token when they log out
+function userLoggedOut() {
+    localStorage.removeItem('token')
+    window.location.href = '/index.html'
 }
