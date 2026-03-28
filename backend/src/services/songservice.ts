@@ -1,7 +1,7 @@
 import pool from '../mysql_db.js';
 
 // kommer nog behöva göra en liknande till denna för låt hemsidan utan song_view dock då den inte ska ranka låtarna utan endast visa dem samt byta namn på denna till typ getAllRankedSongs.
-export const getAllSongs = async () => {
+export const getAllSongsRanked = async () => {
     const [rows] = await pool.query(`SELECT s.song_id, s.title, GROUP_CONCAT(DISTINCT a.name SEPARATOR ', ') AS artist,
       COUNT(DISTINCT sv.song_view_id) AS views
       FROM songs s
@@ -10,6 +10,16 @@ export const getAllSongs = async () => {
       LEFT JOIN song_views sv ON s.song_id = sv.song_id
       GROUP BY s.song_id, s.title
       ORDER BY views DESC`)
+    return rows;
+};
+
+export const getAllSongs = async () => {
+    const [rows] = await pool.query(`SELECT s.song_id, s.title, GROUP_CONCAT(DISTINCT a.name SEPARATOR ', ') AS artist, alb.genre, alb.title AS album_title
+      FROM songs s
+      LEFT JOIN songs_artists sa ON s.song_id = sa.song_id
+      LEFT JOIN artists a ON sa.artist_id = a.artist_id
+      LEFT JOIN albums alb ON s.album_id = alb.album_id
+      GROUP BY s.song_id, s.title, alb.genre, alb.title`)
     return rows;
 };
 
