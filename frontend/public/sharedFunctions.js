@@ -87,5 +87,5 @@ updateLoginTag()
 // removes the users token when they log out
 function userLoggedOut() {
     localStorage.removeItem('token')
-    window.location.href = '/index.html'
+    window.location.reload()
 }

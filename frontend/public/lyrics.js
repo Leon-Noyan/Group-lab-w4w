@@ -1,4 +1,5 @@
 const lyricContainer = document.getElementById('lyric-container')
+// lägg comment på vad denna gör
 const urlId = new URLSearchParams(window.location.search).get('song_id')
 
 // Comments
@@ -100,7 +101,7 @@ form.addEventListener('submit', async (event) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(comment)
         })
@@ -185,7 +186,7 @@ const updateComment = async (id, comment) => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify({ content: updatedMessage })
             }
@@ -205,7 +206,7 @@ const deleteComment = async (id) => {
             `http://localhost:3000/api/comments/${id}`,
             {
                 method: 'DELETE',
-                headers: {'Authorization': `Bearer ${token}`}
+                headers: { Authorization: `Bearer ${token}` }
             }
         )
         if (response.ok) {
