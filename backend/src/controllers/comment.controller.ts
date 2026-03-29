@@ -1,11 +1,6 @@
 import type { Request, Response } from 'express'
-import { createComment } from '../services/comment.service.js'
-import { getAllComments } from '../services/comment.service.js'
-import { getCommentById } from '../services/comment.service.js'
-import { updateComment } from '../services/comment.service.js'
-import { deleteComment } from '../services/comment.service.js'
+import { createComment, getAllComments, getCommentById, updateComment, deleteComment, getCommentsBySongId } from '../services/comment.service.js'
 import { commentSchema } from '../schemas/commentSchema.js'
-import { getCommentsBySongId } from '../services/comment.service.js'
 
 // POST
 export const createCommentController = async (req: Request, res: Response) => {

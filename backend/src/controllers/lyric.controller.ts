@@ -2,6 +2,7 @@ import type { Request, Response } from 'express'
 import * as lyricservice from '../services/lyric.service.js'
 import type { ResultSetHeader } from 'mysql2'
 
+// lyric object
 export interface Lyric {
     lyric_id: number
     text_content: string

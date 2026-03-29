@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 
-
+// checks if the user has valid token
 export const secureRoute = (
     req: Request,
     res: Response,

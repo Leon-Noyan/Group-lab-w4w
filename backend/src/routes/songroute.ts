@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getSongs, getAllSongs,getSearchedSongs ,createSong, updateSong, deleteSong, createSongView } from '../controllers/songcontroller.js';
+import { getSongs, getAllSongs, getSearchedSongs,createSong, updateSong, deleteSong, createSongView } from '../controllers/songcontroller.js';
 
 
 const router = Router();

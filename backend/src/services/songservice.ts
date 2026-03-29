@@ -1,6 +1,6 @@
 import pool from '../mysql_db.js';
 
-// kommer nog behöva göra en liknande till denna för låt hemsidan utan song_view dock då den inte ska ranka låtarna utan endast visa dem samt byta namn på denna till typ getAllRankedSongs.
+// returns all songs ranked used by popular songs list
 export const getAllSongsRanked = async () => {
     const [rows] = await pool.query(`SELECT s.song_id, s.title, GROUP_CONCAT(DISTINCT a.name SEPARATOR ', ') AS artist,
       COUNT(DISTINCT sv.song_view_id) AS views
@@ -13,6 +13,7 @@ export const getAllSongsRanked = async () => {
     return rows;
 };
 
+// returns all songs used by song page
 export const getAllSongs = async () => {
     const [rows] = await pool.query(`SELECT s.song_id, s.title, GROUP_CONCAT(DISTINCT a.name SEPARATOR ', ') AS artist, alb.genre, alb.title AS album_title
       FROM songs s
@@ -23,6 +24,7 @@ export const getAllSongs = async () => {
     return rows;
 };
 
+// returns all songs that match the search query, used by search-bar
 export const getSearchedSongs = async (search: string) => {
   const searchVal = `%${search}%`
     const [rows] = await pool.query(`
