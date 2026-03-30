@@ -39,22 +39,22 @@ export const getSearchedSongs = async (search: string) => {
       `, [searchVal, searchVal])
     return rows;
 };
-
+// Creates a new song in the database
 export const createSong = async (title: string, album_id: number) => {
     const [result] = await pool.query('INSERT INTO songs (title, album_id) VALUES (?, ?)', [title, album_id]);
     return result;
 };
-
+// Creates a new song view in the database
 export const createSongView = async (song_id: number, user_id: number) => {
   const [result] = await pool.query('INSERT INTO song_views (song_id, user_id) VALUES (?, ?)', [song_id, user_id])
   return result
 }
-
+// Updates a song in the database
 export const updateSong = async (id: number, title: string, album_id: number) => {
     const [result] = await pool.query('UPDATE songs SET title = ?, album_id = ? WHERE song_id = ?', [title, album_id, id]);
     return result;
 };
-
+// Deletes a song from the database
 export const deleteSong = async (id: number) => {
     const [result] = await pool.query('DELETE FROM songs WHERE song_id = ?', [id]);
     return result;

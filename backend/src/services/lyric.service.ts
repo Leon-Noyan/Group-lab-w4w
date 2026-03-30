@@ -19,7 +19,7 @@ export const getLyricById = async (id: number) => {
 // returns a random lyric each day, used by daily lyric card
 export const getRandomLyric = async (): Promise<DailyLyric | undefined> => {
   const date = new Date()
-  // responsible picking a random lyric each day
+  // responsible for picking a random lyric each day
   const dailyDate = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate()
 
     const [rows] = await pool.query<DailyLyric[]>(

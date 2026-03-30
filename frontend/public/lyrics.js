@@ -1,5 +1,5 @@
 const lyricContainer = document.getElementById('lyric-container')
-// lägg comment på vad denna gör
+// Grabs the song id from the url to know which song to fetch the lyrics for
 const urlId = new URLSearchParams(window.location.search).get('song_id')
 
 // Comments
@@ -9,12 +9,11 @@ const commentsBtn = document.getElementById('comments-btn')
 const form = document.getElementById('comment-form')
 const emptyComments = document.getElementById('empty-comments')
 
-// auth
-// grabs data
+// decodes token
 const userToken = (token) => {
     if (token) {
         const payload = token.split('.')[1]
-        const decoded = atob(payload)
+        const decoded = atob(payload) // base64 decode
         return JSON.parse(decoded)
     } else {
         return null
@@ -231,7 +230,7 @@ const createSongView = async () => {
         console.error(error)
     }
 }
-
+// checks if the user is logged in
 if (!user) {
     form.style.display = 'none'
     const infoMessage = document.createElement('p')

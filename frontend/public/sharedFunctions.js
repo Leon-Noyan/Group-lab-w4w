@@ -58,7 +58,7 @@ async function fetchSearchedSongs(search) {
             console.log('Song object:', song)
             const songDiv = document.createElement('div')
             songDiv.classList.add('song-card')
-            // kolla att länken är rätt, den behöver plocka rätt id för rätt låt så att den får rätt sida
+
             songDiv.innerHTML = `<a href="lyrics.html?song_id=${song.song_id}">${song.title} - ${song.artist}</a>`
 
             searchResults.appendChild(songDiv)
@@ -80,7 +80,7 @@ const updateLoginTag = () => {
         loginRegisterTag.addEventListener('click', userLoggedOut)
     } else {
         loginRegisterTag.textContent = 'Login & Register'
-        loginRegisterTag.href = '/loginRegister.html'
+        loginRegisterTag.href = 'loginRegister.html'
     }
 }
 updateLoginTag()
