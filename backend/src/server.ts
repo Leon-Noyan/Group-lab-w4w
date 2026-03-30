@@ -10,7 +10,6 @@ import lyricRoute from './routes/lyric.route.js'
 import userRoute from './routes/user.route.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const __filename = fileURLToPath(import.meta.url)
 
 dotenv.config()
 
@@ -18,7 +17,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../../frontend/public')));
+app.use(express.static(path.join(__dirname, '../../frontend/public')))
 
 app.use('/api/comments', commentRoute) // Går till MongoDB
 app.use('/api/songs', songRoutes) // Går till MySQL
