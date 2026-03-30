@@ -1,9 +1,0 @@
-Vi valde att använda MongoDB för att hantera kommentarsfältet. Anledningen till detta har med att kommentarer inte har några komplexa relationer mellan tabeller som andra delar av arbetet. Därav kändes MongoDB som en rimligare approach än MySQL då MySQL är mer anpassad för många komplexa relationer.
-
-MongoDB endpoints
-Get
-Get id
-Get by songId
-Post
-Put
-Delete
