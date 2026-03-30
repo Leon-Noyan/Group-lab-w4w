@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="container">
-            <div class="user-card">
+            <form class="user-card" id="login-form">
                 <h2>Login</h2>
 
                 <div class="input-items">
@@ -19,7 +19,7 @@
                     <div class="input-box">
                         <i class="fa fa-user"></i>
                         <input
-                            id="username"
+                            id="login-username"
                             type="text"
                             placeholder="Enter your username"
                         />
@@ -31,28 +31,73 @@
                     <div class="input-box">
                         <i class="fa fa-lock"></i>
                         <input
-                            id="password"
+                            id="login-password"
                             type="password"
                             placeholder="Enter your password"
                         />
                     </div>
                 </div>
-
+                <button type="button" id="loginBtn">LOGIN</button>
+                <p id="message" style="color: red; margin-top: 10px"></p>
+                <p>
+                    Don't have an account?
+                    <button type="button" id="show-signup">Sign Up</button>
+                </p>
                 <div class="forgot">
                     <a href="#">Forgot password?</a>
                 </div>
+            </form>
 
-                <button class="login-btn" onclick="login()">LOGIN</button>
-                <p id="message" style="color: red; margin-top: 10px"></p>
+            <form id="signup-form" class="user-card" style="display: none">
+                <h2>Sign Up</h2>
+                <div class="input-items">
+                    <label>Username</label>
+                    <div class="input-box">
+                        <i class="fa fa-user"></i>
+                        <input
+                            id="signup-username"
+                            type="text"
+                            placeholder="Enter your username"
+                        />
+                    </div>
+                </div>
+                <div class="input-items">
+                    <label>Email</label>
+                    <div class="input-box">
+                        <i class="fa fa-envelope"></i>
+                        <input
+                            id="signup-email"
+                            type="email"
+                            placeholder="Enter your email"
+                        />
+                    </div>
+                </div>
 
-                <a class="signup" onclick="register()">SIGN UP</a>
+                <div class="input-items">
+                    <label>Password</label>
+                    <div class="input-box">
+                        <i class="fa fa-lock"></i>
+                        <input
+                            id="signup-password"
+                            type="password"
+                            placeholder="Enter your password"
+                        />
+                    </div>
+                </div>
+                <button type="button" id="signup-btn">SIGN UP</button>
+                <p id="signup-message" style="color: red; margin-top: 10px"></p>
+                <p>
+                    Already have an account?
+                    <button type="button" id="show-login">Login</button>
+                </p>
+
                 <p class="signup-text">Or Sign Up Using</p>
                 <div class="icons">
                     <i class="fab fa-google"></i>
                     <i class="fab fa-instagram"></i>
                     <i class="fab fa-facebook-f"></i>
                 </div>
-            </div>
+            </form>
         </div>
         <script src="auth.js"></script>
     </body>

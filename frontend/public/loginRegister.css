@@ -72,7 +72,7 @@ body {
     text-decoration: none;
 }
 
-.login-btn {
+#loginBtn {
     width: 100%;
     padding: 12px;
     border: none;
@@ -82,6 +82,16 @@ body {
     font-weight: bold;
     cursor: pointer;
     background: linear-gradient(90deg, #6dd5ed, #c471ed, #f64f59);
+}
+
+#signup-btn,
+#show-login,
+#show-signup {
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white;
 }
 
 .icons {
@@ -118,6 +128,10 @@ body {
     font-size: 13px;
     color: #777;
     line-height: 38px;
+}
+
+.forgot {
+    text-align: center;
 }
 
 .signup {

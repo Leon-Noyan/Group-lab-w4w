@@ -1,46 +1,78 @@
 const API_URL = 'http://localhost:3000/api/auth'
 
-function getValues() {
- const username = document.getElementById('username').value
- const password = document.getElementById('password').value
- const email = document.getElementById('email').value
- return { username, password, email }
+function getSignupValues() {
+    const username = document.getElementById('signup-username').value
+    const password = document.getElementById('signup-password').value
+    const email = document.getElementById('signup-email').value
+    return { username, password, email }
+}
+
+function getLoginValues() {
+    const username = document.getElementById('login-username').value
+    const password = document.getElementById('login-password').value
+    return { username, password }
 }
 
 async function register() {
- const { username, password, email } = getValues()
+    const { username, password, email } = getSignupValues()
 
- const res = await fetch(`${API_URL}/register`, {
-  method: 'POST',
-  headers: {
-   'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ username, password, email })
- })
+    const res = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password, email })
+    })
 
- const data = await res.json()
- showMessage(data.message)
+    const data = await res.json()
+    showSignupMessage(data.message)
 }
 
 async function login() {
- const { username, password } = getValues()
+    const { username, password } = getLoginValues()
 
- const res = await fetch(`${API_URL}/login`, {
-  method: 'POST',
-  headers: {
-   'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ username, password })
- })
+    const res = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+    })
 
- const data = await res.json()
- showMessage(data.message)
+    const data = await res.json()
+    showLoginMessage(data.message)
 
- if (data.token) {
-  localStorage.setItem('token', data.token)
- }
+    if (data.token) {
+        localStorage.setItem('token', data.token)
+        window.location.href = 'index.html'
+    }
 }
 
-function showMessage(msg) {
- document.getElementById('message').innerText = msg
+function showLoginMessage(msg) {
+    document.getElementById('message').innerText = msg
 }
+
+function showSignupMessage(msg) {
+    document.getElementById('signup-message').innerText = msg
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn = document.getElementById('loginBtn')
+    const signupBtn = document.getElementById('signup-btn')
+    const showSignup = document.getElementById('show-signup')
+    const showLogin = document.getElementById('show-login')
+    const loginForm = document.getElementById('login-form')
+    const signupForm = document.getElementById('signup-form')
+
+    loginBtn.addEventListener('click', login)
+    signupBtn.addEventListener('click', register)
+
+    showSignup.addEventListener('click', () => {
+        loginForm.style.display = 'none'
+        signupForm.style.display = 'block'
+    })
+    showLogin.addEventListener('click', () => {
+        loginForm.style.display = 'block'
+        signupForm.style.display = 'none'
+    })
+})
