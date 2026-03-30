@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    height: 57rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#ff1493, #1e90ff, #ff6347, #d2371c);
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.user-card {
+    background: #fff;
+    padding: 40px 30px;
+    width: 350px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.user-card h2 {
+    margin-bottom: 25px;
+}
+
+.input-items {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-items label {
+    font-size: 14px;
+    color: #555;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+.input-box i {
+    margin-right: 10px;
+    color: #999;
+}
+
+.input-box input {
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.forgot {
+    text-align: right;
+    margin: 10px 0;
+}
+
+.forgot a {
+    font-size: 12px;
+    color: #777;
+    text-decoration: none;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(90deg, #6dd5ed, #c471ed, #f64f59);
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.icons i {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.fa-facebook-f {
+    background: #3b5998;
+}
+
+.fa-instagram {
+    background: linear-gradient(#833ab4, #c13584, #e1306c, #f77737, #fcaf45);
+}
+
+.fa-google {
+    background: #db4437;
+}
+
+.signup-text {
+    font-size: 13px;
+    color: #777;
+    line-height: 38px;
+}
+
+.signup {
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    line-height: 42px;
+}

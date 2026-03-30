@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Login & Register</title>
+        <link rel="stylesheet" href="index.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <div class="user-card">
+                <h2>Login</h2>
+
+                <div class="input-items">
+                    <label>Username</label>
+                    <div class="input-box">
+                        <i class="fa fa-user"></i>
+                        <input
+                            id="username"
+                            type="text"
+                            placeholder="Enter your username"
+                        />
+                    </div>
+                </div>
+
+                <div class="input-items">
+                    <label>Password</label>
+                    <div class="input-box">
+                        <i class="fa fa-lock"></i>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Enter your password"
+                        />
+                    </div>
+                </div>
+
+                <div class="forgot">
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button class="login-btn" onclick="login()">LOGIN</button>
+                <p id="message" style="color: red; margin-top: 10px"></p>
+
+                <a class="signup" onclick="register()">SIGN UP</a>
+                <p class="signup-text">Or Sign Up Using</p>
+                <div class="icons">
+                    <i class="fab fa-google"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+            </div>
+        </div>
+        <script src="auth.js"></script>
+    </body>
+</html>
