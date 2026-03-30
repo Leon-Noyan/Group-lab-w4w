@@ -7,7 +7,7 @@ interface DailyLyric extends RowDataPacket {
     title: string;
     name: string
 }
-
+// returns a lyric by id
 export const getLyricById = async (id: number) => {
     const [rows] = await pool.query(
         `SELECT lyrics.*,songs.title FROM lyrics JOIN songs ON lyrics.song_id = songs.song_id WHERE lyrics.song_id = ?`,
@@ -16,9 +16,10 @@ export const getLyricById = async (id: number) => {
     return rows
 }
 
+// returns a random lyric each day, used by daily lyric card
 export const getRandomLyric = async (): Promise<DailyLyric | undefined> => {
   const date = new Date()
-
+  // responsible picking a random lyric each day
   const dailyDate = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate()
 
     const [rows] = await pool.query<DailyLyric[]>(
@@ -30,7 +31,7 @@ export const getRandomLyric = async (): Promise<DailyLyric | undefined> => {
     )
     return rows[0]
 }
-
+// creates a lyric
 export const createLyric = async (lyricData: Omit<Lyric, 'lyric_id'>) => {
   const { song_id, text_content, part_type, position } = lyricData
 
@@ -39,7 +40,7 @@ export const createLyric = async (lyricData: Omit<Lyric, 'lyric_id'>) => {
   )
   return result
 }
-
+// updates an existing lyric
 export const updateLyric = async (id: number, updateData: Partial<Lyric>) => {
   const { text_content, part_type, position } = updateData
 
@@ -48,7 +49,7 @@ export const updateLyric = async (id: number, updateData: Partial<Lyric>) => {
   )
   return result
 }
-
+// deletes an existing lyric
 export const deleteLyric = async (id: number) => {
   const [result] = await pool.query('DELETE FROM lyrics WHERE lyric_id = ?', [id])
   return result

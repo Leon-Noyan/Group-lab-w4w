@@ -32,6 +32,7 @@ export const updateComment = async (
     return await Comment.findByIdAndUpdate(id, data, { returnDocument: 'after' })
 }
 
+// DELETE 
 export const deleteComment = async (id: string) => {
     const deletedComment = await Comment.findByIdAndDelete(id)
     return deletedComment

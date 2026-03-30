@@ -3,12 +3,21 @@ import * as songservice from '../services/songservice.js';
 
 export const getSongs = async (req: Request, res: Response) => {
     try {
-        const songs = await songservice.getAllSongs();
+        const songs = await songservice.getAllSongsRanked();
         res.status(200).json(songs);
     } catch (error) {
-        res.status(500).json({ message: 'ett fel uppstod', error });
+        res.status(500).json({ message: 'An error occurred', error });
     }
 };
+
+export const getAllSongs = async (req: Request, res: Response) => {
+  try {
+    const allSongs = await songservice.getAllSongs()
+    res.status(200).json(allSongs)
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error })
+  }
+}
 
 export const getSearchedSongs = async (req: Request, res: Response) => {
   try {
