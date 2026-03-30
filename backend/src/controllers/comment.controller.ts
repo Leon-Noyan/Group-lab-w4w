@@ -1,5 +1,12 @@
 import type { Request, Response } from 'express'
-import { createComment, getAllComments, getCommentById, updateComment, deleteComment, getCommentsBySongId } from '../services/comment.service.js'
+import {
+    createComment,
+    getAllComments,
+    getCommentById,
+    updateComment,
+    deleteComment,
+    getCommentsBySongId
+} from '../services/comment.service.js'
 import { commentSchema } from '../schemas/commentSchema.js'
 
 // POST
@@ -43,18 +50,21 @@ export const getCommentByIdController = async (
 
 // GET Comment by songId
 
-export const getCommentsBySongIdController = async (req: Request, res: Response) => {
-  try {
-    const song_id = req.params.song_id as string
-    if (!song_id) {
-      return res.status(400).json({ message: 'Missing song id' })
-    }
+export const getCommentsBySongIdController = async (
+    req: Request,
+    res: Response
+) => {
+    try {
+        const song_id = req.params.song_id as string
+        if (!song_id) {
+            return res.status(400).json({ message: 'Missing song id' })
+        }
 
-    const comments = await getCommentsBySongId(song_id)
-    res.json(comments)
-  } catch (error) {
-    res.status(500).json({ message: 'Internal server error' })
-  }
+        const comments = await getCommentsBySongId(song_id)
+        res.json(comments)
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' })
+    }
 }
 
 // PUT/ UPDATE Comment
@@ -68,7 +78,7 @@ export const updateCommentController = async (
         if (!updatedComment) {
             return res.status(404).json({ message: 'Could not find comment' })
         }
-        res.status(200).json({ message: 'Comment updated successfully' })
+        res.status(200).json(updatedComment)
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
@@ -85,7 +95,7 @@ export const deleteCommentController = async (
         if (!deletedComment) {
             return res.status(404).json({ message: 'Could not find comment' })
         }
-        res.status(200).json({ message: 'Comment deleted successfully' })
+        res.status(200).json(deletedComment)
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
