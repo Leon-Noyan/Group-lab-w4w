@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import commentRoute from './routes/comment.route.js'
@@ -11,10 +11,10 @@ import userRoute from './routes/user.route.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-if (!process.env.VERCEL) {
+/* if (!process.env.VERCEL) {
   const dotenv = await import("dotenv");
   dotenv.config();
-}
+} */
 
 const app = express()
 
