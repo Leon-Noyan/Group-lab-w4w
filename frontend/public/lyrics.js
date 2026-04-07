@@ -29,7 +29,7 @@ const fetchLyricById = async (id) => {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/lyrics/${id}`)
+        const response = await fetch(`https://group-lab-w4w-backend.vercel.app/api/lyrics/${id}`)
         if (!response.ok) {
             throw new Error('Failed to fetch lyric')
         }
@@ -96,7 +96,7 @@ form.addEventListener('submit', async (event) => {
     }
 
     try {
-        const response = await fetch('http://localhost:3000/api/comments', {
+        const response = await fetch('https://group-lab-w4w-backend.vercel.app/api/comments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ const displayComment = (comment) => {
 const fetchComments = async (id) => {
     try {
         const response = await fetch(
-            `http://localhost:3000/api/comments/song/${id}`
+            `https://group-lab-w4w-backend.vercel.app/api/comments/song/${id}`
         )
         const comments = await response.json()
 
@@ -180,7 +180,7 @@ const updateComment = async (id, comment) => {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/api/comments/${id}`,
+            `https://group-lab-w4w-backend.vercel.app/api/comments/${id}`,
             {
                 method: 'PUT',
                 headers: {
@@ -202,7 +202,7 @@ const updateComment = async (id, comment) => {
 const deleteComment = async (id) => {
     try {
         const response = await fetch(
-            `http://localhost:3000/api/comments/${id}`,
+            `https://group-lab-w4w-backend.vercel.app/api/comments/${id}`,
             {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` }
@@ -219,7 +219,7 @@ const deleteComment = async (id) => {
 // function that creates a song view
 const createSongView = async () => {
     try {
-        await fetch(`http://localhost:3000/api/songs/${urlId}/views`, {
+        await fetch(`https://group-lab-w4w-backend.vercel.app/api/songs/${urlId}/views`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
