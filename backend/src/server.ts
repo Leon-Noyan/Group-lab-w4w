@@ -18,7 +18,11 @@ if (!process.env.VERCEL) {
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: 'https://group-lab-w4w-web.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 app.use(express.json())
 // app.use(express.static(path.join(__dirname, '../../frontend/public')))
 
