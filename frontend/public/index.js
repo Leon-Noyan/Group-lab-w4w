@@ -11,7 +11,7 @@ const renderDailyVerse = (verse) => {
 // function that fetches the daily verse
 const fetchDailyVerse = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/lyrics/random')
+        const response = await fetch('https://group-lab-w4w-backend.vercel.app/api/lyrics/random')
         const verse = await response.json()
         renderDailyVerse(verse)
     } catch (error) {
@@ -24,7 +24,7 @@ fetchDailyVerse()
 // function that fetches the songs
 const fetchSongs = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/songs')
+        const response = await fetch('https://group-lab-w4w-backend.vercel.app/api/songs')
         const songs = await response.json()
         // limits the amount of songs being rendered to the popular songs list
         const songLimit = songs.slice(0, 8)
