@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api/auth'
+const API_URL = 'https://group-lab-w4w-backend.vercel.app/api/auth'
 
 function getSignupValues() {
     const username = document.getElementById('signup-username').value
