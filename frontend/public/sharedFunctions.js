@@ -37,7 +37,7 @@ searchForm.addEventListener('submit', (event) => {
 async function fetchSearchedSongs(search) {
     try {
         const response = await fetch(
-            `http://localhost:3000/api/songs/search?search=${search}`
+            `https://group-lab-w4w-backend.vercel.app/api/songs/search?search=${search}`
         )
 
         const songs = await response.json()
