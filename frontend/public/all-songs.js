@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchAndRenderSongs() {
         try {
             // Hämta data från backend
-            const response = await fetch('http://localhost:3000/api/songs/all')
+            const response = await fetch('https://group-lab-w4w-backend.vercel.app/api/songs/all')
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`)
