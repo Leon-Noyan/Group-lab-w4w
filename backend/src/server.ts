@@ -19,6 +19,10 @@ app.use(cors())
 app.use(express.json())
 // app.use(express.static(path.join(__dirname, '../../frontend/public')))
 
+app.get('/', (req, res) => {
+    res.json({ message: 'API is working 🚀' });
+});
+
 connectDB().catch(err => console.error("Database connection error:", err));
 
 app.use('/api/comments', commentRoute) // Går till MongoDB
