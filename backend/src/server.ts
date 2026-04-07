@@ -19,20 +19,24 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../../frontend/public')))
 
-connectDB().catch(err => console.error("Database connection error:", err));
-
 app.use('/api/comments', commentRoute) // Går till MongoDB
 app.use('/api/songs', songRoutes) // Går till MySQL
 app.use('/api/lyrics', lyricRoute) // Går till MySQL
 app.use('/api/auth', userRoute) // Går till MySQL
 
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 3000
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`)
-    })
-}
-
 const PORT = process.env.PORT || 3000
 
-export default app;
+connectDB()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(
+                `Server is running on port ${PORT} with BOTH databases!`
+            )
+        })
+    })
+    .catch((error) => {
+        console.error(
+            'Could not start the server, server failed to start',
+            error
+        )
+    })
