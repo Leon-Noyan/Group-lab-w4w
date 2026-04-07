@@ -11,7 +11,10 @@ import userRoute from './routes/user.route.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-dotenv.config()
+if (!process.env.VERCEL) {
+  const dotenv = await import("dotenv");
+  dotenv.config();
+}
 
 const app = express()
 
